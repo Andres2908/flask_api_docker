@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route('/')
 def home():
-    return jsonify({"mensaje": "Hola, Docker con Flask!"})
+    return jsonify({"mensaje": "Hola, son una API que corre en un contedor!"})
 
 @app.route('/siayec')
 def siayec():

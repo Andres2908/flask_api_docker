@@ -7,7 +7,7 @@ WORKDIR /app
 # Copiar solo requirements.txt primero
 COPY requirements.txt .
 
-# Instalar dependencias
+# Instalar dependencias para funcionar
 RUN python -m ensurepip --upgrade
 RUN python -m pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
