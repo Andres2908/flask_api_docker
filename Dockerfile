@@ -1,5 +1,5 @@
 # Usar Python 3.9 como base
-FROM python:3.11-slim
+FROM python:3.11
 
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
