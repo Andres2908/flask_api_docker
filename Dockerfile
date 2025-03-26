@@ -16,8 +16,5 @@ COPY . .
 # Exponer el puerto 8080 (App Runner espera este puerto)
 EXPOSE 8080
 
-# Definir la variable de entorno para Flask
-ENV FLASK_APP=app.py
-
 # Ejecutar la API con Gunicorn para producción
 CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
