@@ -1,4 +1,3 @@
-# Usar Python 3.9 como base
 FROM python:3.11
 
 # Establecer el directorio de trabajo dentro del contenedor
@@ -7,10 +6,12 @@ WORKDIR /app
 # Copiar solo requirements.txt primero
 COPY requirements.txt .
 
-# Instalar dependencias para funcionar
-RUN python -m ensurepip --upgrade
+# Asegurarse de que pip esté disponible
+RUN apt-get update && apt-get install -y python3-pip
+
+# Actualizar pip y luego instalar dependencias
 RUN python -m pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install --no-cache-dir -r requirements.txt
 
 # Copiar todos los archivos al contenedor
 COPY . .
