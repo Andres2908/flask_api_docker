@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 5000
 
 # Ejecutar la API
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
