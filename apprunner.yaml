@@ -3,7 +3,8 @@ runtime: python311
 build:
   commands:
     build:
-      - pip3 install pipenv
-      - pipenv install 
+      - pip3 install --no-cache-dir -r requirements.txt
 run: 
   command: python3 app.py
+  network: 
+    port: 5000
