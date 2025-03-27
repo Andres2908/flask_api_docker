@@ -3,9 +3,9 @@ runtime: python311
 build:
   commands:
     build:
-      - pip3 install --upgrade pip
-      - pip3 install gunicorn -r requirements.txt  # Asegúrate de incluir gunicorn
+      - python3 -m ensurepip --upgrade
+      - python3 -m pip install --no-cache-dir --upgrade pip setuptools
+      - python3 -m pip install --no-cache-dir --force-reinstall -r requirements.txt
 run:
-  command: gunicorn -b 0.0.0.0:5000 app:app
-  network: 
+  command: python3 -m gunicorn -b 0.0.0.0:$PORT app:app
     port: 5000
