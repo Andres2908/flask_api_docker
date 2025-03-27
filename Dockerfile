@@ -10,6 +10,9 @@ COPY requirements.txt .
 # Actualizar pip y luego instalar dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Verificar la instalación de Gunicorn
+RUN gunicorn --version
+
 # Copiar todos los archivos al contenedor
 COPY . .
 
