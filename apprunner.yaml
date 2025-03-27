@@ -3,10 +3,10 @@ runtime: python311
 build:
   commands:
     build:
-      - python3 -m ensurepip --upgrade
-      - python3 -m pip install --no-cache-dir --upgrade pip setuptools
-      - python3 -m pip install --no-cache-dir --force-reinstall -r requirements.txt
+      - python3 -m pip install --upgrade pip
+      - python3 -m pip install gunicorn flask
+      - python3 -m pip install -r requirements.txt
 run:
-  command: python3 -m gunicorn -b 0.0.0.0:$PORT app:app
-  network: 
+  command: /usr/local/bin/python3 -m gunicorn -b 0.0.0.0:$PORT app:app
+  network:
     port: 5000
