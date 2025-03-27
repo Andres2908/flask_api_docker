@@ -16,7 +16,3 @@ def siayec():
 @app.route('/status')
 def status():
     return jsonify({"status": "OK", "version": "1.0"})
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
