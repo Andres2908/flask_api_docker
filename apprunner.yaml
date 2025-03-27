@@ -4,9 +4,9 @@ build:
   commands:
     build:
       - python3 -m pip install --upgrade pip
-      - python3 -m pip install gunicorn flask
+      - python3 -m pip install gunicorn==21.2.0 flask==3.0.0 flask-cors==4.0.0
       - python3 -m pip install -r requirements.txt
 run:
-  command: /usr/local/bin/python3 -m gunicorn -b 0.0.0.0:$PORT app:app
+  command: gunicorn --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120 app:app
   network:
     port: 5000
