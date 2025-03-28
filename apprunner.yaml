@@ -3,9 +3,12 @@ runtime: python311
 build:
   commands:
     build:
-      - python3 -m pip3 install --upgrade pip
-      - python3 -m pip3 install --target=/var/task -r requirements.txt
+      - python3 -m pip install --upgrade pip
+      - python3 -m pip install -r requirements.txt
 run:
-  command: python3 -m gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 120 --access-logfile - --error-logfile - app:app
+  runtime-version: 3.11
+  pre-run:
+    - pip3 install gunicorn
+  command: gunicorn --bind 0.0.0.0:5000 app:app
   network:
     port: 5000
