@@ -7,7 +7,7 @@ def create_app():
     
     @app.route('/')
     def home():
-        return jsonify({"mensaje": "Hola, App Runner con Flask!"})
+        return jsonify({"mensaje": "Hola, soy una API de python construida con Flask y corro con appRunner!"})
     
     @app.route('/siayec')
     def siayec():
