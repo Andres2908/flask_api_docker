@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Autenticando en Amazon ECR..."
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPO
+
+  build:
+    commands:
+      - echo "Construyendo imagen Docker..."
+      - docker build -t $ECR_REPO:latest .
+      - docker tag $ECR_REPO:latest $ECR_REPO:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo "Empujando imagen a Amazon ECR..."
+      - docker push $ECR_REPO:latest
+      - docker push $ECR_REPO:$IMAGE_TAG
+      - echo "Creando archivo de definición de imagen..."
+      - printf '[{"name":"mi-contenedor","imageUri":"%s"}]' $ECR_REPO:$IMAGE_TAG > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
