@@ -7,7 +7,7 @@ def create_app():
     
     @app.route('/')
     def home():
-        return jsonify({"mensaje": "Hola, soy una API de python construida con Flask y corro con appRunner!"})
+        return jsonify({"mensaje": "Hola, soy una API de python construida con Flask y paso por un proceso de CI/CD!"})
     
     @app.route('/siayec')
     def siayec():
@@ -21,4 +21,3 @@ def create_app():
 
 app = create_app()
 
-# Elimina el bloque if __name__... (Gunicorn lo maneja)
