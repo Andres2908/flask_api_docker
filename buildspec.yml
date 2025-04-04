@@ -17,6 +17,7 @@ phases:
       - echo "Empujando imagen a Amazon ECR..."
       - docker push $ECR_REPO:latest
       - echo "Creando archivo de definición de imagen..."
+      - cd $CODEBUILD_SRC_DIR
       - printf '[{"name":"mi-contenedor","imageUri":"%s"}]' $ECR_REPO:latest > imagedefinitions.json
       - ls -l imagedefinitions.json
 
