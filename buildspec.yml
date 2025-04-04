@@ -18,6 +18,7 @@ phases:
       - docker push $ECR_REPO:latest
       - echo "Creando archivo de definición de imagen..."
       - printf '[{"name":"mi-contenedor","imageUri":"%s"}]' $ECR_REPO:latest > imagedefinitions.json
+      - ls -l imagedefinitions.json 
 
 artifacts:
   files:
