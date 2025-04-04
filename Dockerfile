@@ -11,7 +11,7 @@ COPY requirements.txt .
 #ENV PATH="/venv/bin:$PATH"
 
 # Instalar dependencias dentro del entorno virtual
-RUN /venv/bin/pip install --no-cache-dir --upgrade pip && /venv/bin/pip install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && pip install -r requirements.txt
 
 # Copiar los archivos de la aplicación
 COPY . .
