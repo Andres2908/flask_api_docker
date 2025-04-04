@@ -10,7 +10,7 @@ phases:
     commands:
       - echo "Construyendo imagen Docker..."
       - docker build -t $ECR_REPO:latest .
-      - docker tag $ECR_REPO:latest $ECR_REPO:$IMAGE_TAG
+      - docker tag $ECR_REPO:latest $ECR_REPO:latest
 
   post_build:
     commands:
