@@ -15,10 +15,11 @@ phases:
   post_build:
     commands:
       - echo "Empujando imagen a Amazon ECR..."
+      - echo "ECR_REPO: $ECR_REPO"
+      - echo "IMAGE_TAG: $IMAGE_TAG"
       - docker push $ECR_REPO:latest
-      - docker push $ECR_REPO:$IMAGE_TAG
       - echo "Creando archivo de definición de imagen..."
-      - printf '[{"name":"mi-contenedor","imageUri":"%s"}]' $ECR_REPO:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"mi-contenedor","imageUri":"%s"}]' $ECR_REPO:latest > imagedefinitions.json
 
 artifacts:
   files:
