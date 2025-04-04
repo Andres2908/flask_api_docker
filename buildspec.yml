@@ -1,26 +1,28 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      docker: 18
+  pre_build:
     commands:
-      - echo "Instalando jq..."
-      - apt-get update && apt-get install -y jq
+      - echo "Autenticando en Amazon ECR..."
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPO
+
   build:
     commands:
-      - echo "Construyendo la imagen Docker..."
+      - echo "Construyendo imagen Docker..."
       - docker build -t $ECR_REPO:latest .
       - docker tag $ECR_REPO:latest $ECR_REPO:latest
+
   post_build:
     commands:
-      - echo "Empujando la imagen a Amazon ECR..."
+      - echo "Empujando imagen a Amazon ECR..."
       - docker push $ECR_REPO:latest
-      - echo "Generando imagedefinitions.json..."
-      - ImageURI=$(jq -r '.ImageURI' imageDetail.json)
-      - printf '[{"name":"mi-contenedor","imageUri":"%s"}]' "$ImageURI" > imagedefinitions.json
-      - cat imagedefinitions.json
+      - echo "Creando archivo de definición de imagen..."
+      - printf '[{"name":"mi-contenedor","imageUri":"%s"}]' $ECR_REPO:latest > imagedefinitions.json
+      - ls -l imagedefinitions.json
 
 artifacts:
   files:
     - imagedefinitions.json
+  base-directory: .
+  discard-paths: yes
+  name: my-artifact.zip
