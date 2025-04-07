@@ -1,6 +1,6 @@
 [
     {
-      "name": "first-container",
-      "imageUri": "639776112423.dkr.ecr.us-east-1.amazonaws.com/python-test:latest"
+        "name": "first-container",
+        "imageUri": "639776112423.dkr.ecr.us-east-1.amazonaws.com/python-test:latest"
     }
-  ]
+]
