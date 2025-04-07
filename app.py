@@ -12,7 +12,7 @@ def create_app():
 
     @app.route('/siayec')
     def siayec():
-        return jsonify({"saludo": "Hola grupo Siayec !"})
+        return jsonify({"saludo": "Hola grupo Siayec !!"})
 
     @app.route('/status')
     def status():
