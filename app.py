@@ -20,7 +20,7 @@ def create_app():
 
     @app.route('/status')
     def status():
-        return jsonify({"status": "OK", "version": "1.0"})
+        return jsonify({"status": "OK", "version": "2.0"})
 
     return app
 
