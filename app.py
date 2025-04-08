@@ -11,7 +11,7 @@ def create_app():
         return jsonify({"mensaje": "Hola, soy una API de python construida con Flask y paso por un proceso de CI/CD!"})
     
     @app.route('/deploy')
-    def home():
+    def deploy():
         return jsonify({"mensaje": "Soy un nuevo deploy"})
 
     @app.route('/siayec')
